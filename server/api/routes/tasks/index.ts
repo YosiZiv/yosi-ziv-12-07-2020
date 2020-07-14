@@ -1,0 +1,11 @@
+import express from "express";
+import { newTaskRouter } from "./new-task";
+import { getTasksRouter } from "./get-tasks";
+import { editTasksRouter } from "./edit-task";
+import { deleteTasksRouter } from "./delete-task";
+const router = express.Router();
+router.use("/", newTaskRouter);
+router.use("/", getTasksRouter);
+router.use("/", editTasksRouter);
+router.use("/", deleteTasksRouter);
+export { router as tasksRouter };
