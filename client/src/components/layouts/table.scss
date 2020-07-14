@@ -1,0 +1,44 @@
+.table-container table {
+  text-overflow: ellipsis;
+  width: 100%;
+  border: 1px solid #919192;
+  font-size: 10px;
+  font-family: "Simonetta";
+  color: #1c1d1e;
+  text-shadow: 1px 1px white;
+  width: 85%;
+  margin: 50px auto;
+  background: #ffffff;
+  border-collapse: collapse;
+  border: 2px solid #3f51b5;
+}
+
+.table-container th {
+  background-color: #e9ebf0;
+}
+.table-container tr {
+  cursor: pointer;
+  border: 1px solid #e4e6ed;
+  line-height: 50px;
+}
+.table-container td svg {
+  padding: 0 0;
+}
+.table-container tbody tr:hover {
+  background-color: #3f51b5;
+  color: white;
+}
+.delete-icon {
+  color: #db351f;
+}
+.edit-icon {
+  color: #302e2e;
+}
+.visibillity-icon {
+  color: #302e2e;
+}
+@media screen and (min-width: 800px) {
+  .table-container table {
+    font-size: 21px;
+  }
+}

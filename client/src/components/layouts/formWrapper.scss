@@ -1,0 +1,19 @@
+.form-wrapper {
+  background-color: #ffffff;
+  width: 90%;
+  border: 1px solid #3f51b5;
+  margin: auto auto;
+  border-radius: 10px;
+  height: 100%;
+  padding: 40px 0;
+  box-shadow: -5px 7px 60px -19px rgba(179, 133, 179, 1);
+}
+
+@media screen and (min-width: 800px) {
+  .form-wrapper {
+    width: 50%;
+  }
+}
+// <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+// <MenuIcon />
+// </IconButton>
