@@ -1,15 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import useRequest from "../../hooks/use-request";
-import { User } from "../../types";
+import { Context } from "../../user-context";
+
 export const Logout: React.FC<RouteComponentProps> = ({ history }) => {
   const { doRequest } = useRequest();
+  const { setUser } = useContext(Context);
   useEffect(() => {
     const logout = async () => {
       await doRequest({
         url: "/users/logout",
         method: "get",
-        onSuccess: () => history.push("/", { user: null }),
+        onSuccess: () => {
+          setUser({ currentUser: null });
+          history.push("/");
+        },
       });
     };
     logout();

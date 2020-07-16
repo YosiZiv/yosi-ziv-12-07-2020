@@ -4,16 +4,16 @@ import { NavLink } from "react-router-dom";
 
 import { Button } from "@material-ui/core";
 
-import { UserContext } from "../../user-context";
+import { Context } from "../../user-context";
 export const Home = () => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(Context);
   return (
     <div className="home-page-container">
       <h2>Welcome To Tasks Application</h2>
       {currentUser ? (
         <NavLink to="/create-task">
           <Button variant="outlined" color="primary">
-            `` Create Task
+            Create Task
           </Button>
         </NavLink>
       ) : (

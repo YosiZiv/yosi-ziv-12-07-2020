@@ -37,8 +37,22 @@
 .visibillity-icon {
   color: #302e2e;
 }
+.icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.icon-wrapper button {
+  padding: 1px;
+}
+.action-column {
+  width: 100px;
+}
 @media screen and (min-width: 800px) {
   .table-container table {
     font-size: 21px;
+  }
+  .icon-wrapper {
+    flex-direction: row;
   }
 }

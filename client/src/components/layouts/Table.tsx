@@ -44,22 +44,42 @@ export const Table: React.FC<Props> = (props) => {
       Object.keys(data[0]).forEach((key) => {
         switch (key) {
           case "userName":
-            tableHeadArray[0] = <th key={key}>{key}</th>;
+            tableHeadArray[0] = (
+              <th key={key}>
+                <p>{key}</p>
+              </th>
+            );
             break;
           case "email":
-            tableHeadArray[1] = <th key={key}>{key}</th>;
+            tableHeadArray[1] = (
+              <th key={key}>
+                <p>{key}</p>
+              </th>
+            );
             break;
           case "phone":
-            tableHeadArray[2] = <th key={key}>{key}</th>;
+            tableHeadArray[2] = (
+              <th key={key}>
+                <p>{key}</p>
+              </th>
+            );
             break;
           case "createAt":
-            tableHeadArray[3] = <th key={key}>{key}</th>;
+            tableHeadArray[3] = (
+              <th key={key}>
+                <p>{key}</p>
+              </th>
+            );
             break;
           default:
             break;
         }
       });
-      tableHeadArray.push(<th key="last-head">actions</th>);
+      tableHeadArray.push(
+        <th className="action-column" key="last-head">
+          <p>actions</p>
+        </th>
+      );
       // create header table end
 
       //create body table start
@@ -69,29 +89,52 @@ export const Table: React.FC<Props> = (props) => {
         Object.entries(object).forEach(([key, value]) => {
           switch (key) {
             case "userName":
-              rowTableArray[0] = <td key={key}>{value}</td>;
+              rowTableArray[0] = (
+                <td key={key}>
+                  <p>{value}</p>
+                </td>
+              );
               break;
             case "email":
-              rowTableArray[1] = <td key={key}>{value}</td>;
+              rowTableArray[1] = (
+                <td key={key}>
+                  <p>{value}</p>
+                </td>
+              );
               break;
             case "phone":
-              rowTableArray[2] = <td key={key}>{value}</td>;
+              rowTableArray[2] = (
+                <td key={key}>
+                  <p>{value}</p>
+                </td>
+              );
               break;
             case "createAt":
-              rowTableArray[3] = <td key={key}>{formatDate(value)}</td>;
+              rowTableArray[3] = (
+                <td key={key}>
+                  <p>{formatDate(value)}</p>
+                </td>
+              );
               break;
             case "id":
               rowTableArray[4] = (
                 <td key={key}>
-                  <IconButton onClick={() => deleteTask(object.id.toString())}>
-                    <DeleteIcon className="delete-icon" />
-                  </IconButton>
-                  <IconButton onClick={() => editTask(object)}>
-                    <EditIcon className="edit-icon" />
-                  </IconButton>
-                  <IconButton onClick={() => editTask(object)}>
-                    <VisibilityIcon className="visibillity-icon" />
-                  </IconButton>
+                  <div className="icon-wrapper">
+                    <IconButton
+                      onClick={() => deleteTask(object.id.toString())}
+                    >
+                      <DeleteIcon fontSize="small" className="delete-icon" />
+                    </IconButton>
+                    <IconButton onClick={() => editTask(object)}>
+                      <EditIcon fontSize="small" className="edit-icon" />
+                    </IconButton>
+                    <IconButton onClick={() => editTask(object)}>
+                      <VisibilityIcon
+                        fontSize="small"
+                        className="visibillity-icon"
+                      />
+                    </IconButton>
+                  </div>
                 </td>
               );
               break;

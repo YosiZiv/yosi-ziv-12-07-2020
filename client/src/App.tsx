@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   Switch,
   Route,
@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import { User } from "./types";
-import { UserContext } from "./user-context";
 import { Home } from "./components/pages/Home";
 import { Navigation } from "./components/layouts/Navigation";
 import { Login } from "./components/pages/Login";
@@ -16,6 +15,7 @@ import { Tasks } from "./components/pages/Tasks";
 import { CreateTask } from "./components/pages/CreateTask";
 import { Logout } from "./components/pages/Logout";
 import useRequest from "./hooks/use-request";
+import { Context } from "./user-context";
 const routes = (
   <Switch>
     <Route exact path="/" component={Home} />
@@ -28,13 +28,12 @@ const routes = (
 );
 
 const App: React.FC<RouteComponentProps> = (props) => {
-  const { location } = props;
-  const [user, setUser] = useState<
-    { currentUser: null } | { currentUser: User }
-  >({ currentUser: null });
+  const { currentUser } = useContext(Context);
+  const [user, setUser] = useState<{ currentUser: null | User }>({
+    currentUser: null,
+  });
+  const value = { currentUser: user.currentUser, setUser };
   const { doRequest } = useRequest();
-  // @ts-ignore
-  const isLoggedIn = location?.state?.user;
   useEffect(() => {
     const isAuth = async () => {
       await doRequest({
@@ -44,14 +43,15 @@ const App: React.FC<RouteComponentProps> = (props) => {
       });
     };
     isAuth();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoggedIn]);
+  }, [currentUser]);
   return (
     <div className="App">
-      <UserContext.Provider value={user}>
+      <Context.Provider value={value}>
         <Navigation />
         <header className="App-header">{routes}</header>
-      </UserContext.Provider>
+      </Context.Provider>
     </div>
   );
 };

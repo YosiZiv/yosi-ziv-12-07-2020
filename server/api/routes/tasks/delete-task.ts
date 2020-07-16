@@ -14,8 +14,8 @@ router.delete("/:id", currentUser, async (req: Request, res: Response) => {
     throw new NotFoundError();
   }
   if (
-    task.userId.toString() !== req.currentUser?.id.toString() ||
-    req.currentUser.role !== "admin"
+    task.userId.toString() !== req.currentUser?.id.toString() &&
+    req.currentUser?.role !== "admin"
   ) {
     throw new NotAuthorizedError();
   }

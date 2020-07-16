@@ -13,7 +13,24 @@ export const Tasks: React.FC<RouteComponentProps> = ({
   match,
 }) => {
   const { doRequest } = useRequest();
-  const [tasks, setTasks] = useState<Task[] | []>([]);
+  const [tasks, setTasks] = useState<Task[] | []>([
+    {
+      createAt: "2020-07-13T21:33:12.600Z",
+
+      userName: "test3",
+      email: "test@test.com",
+      phone: "455245",
+      id: "5f0bc6547e0cbb5114c55a8f",
+    },
+    {
+      createAt: "2020-07-14T01:50:51.421Z",
+
+      userName: "new task",
+      email: "test@test.com",
+      phone: "0527721411",
+      id: "5f0d86d97c91f80018c1fb88",
+    },
+  ]);
   const deleteTask = (id: string) => {
     doRequest({
       url: `/tasks/${id}`,

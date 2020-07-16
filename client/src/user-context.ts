@@ -3,6 +3,7 @@ interface User {
   id: string;
   email: string;
 }
-export const UserContext = createContext<
-  { currentUser: null } | { currentUser: User }
->({ currentUser: null });
+export const Context = createContext<{
+  currentUser: null | User;
+  setUser: any;
+}>({ currentUser: null, setUser: () => {} });

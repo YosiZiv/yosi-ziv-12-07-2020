@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import "./navigation.scss";
 import { NavLink } from "react-router-dom";
 import logo from "../../logo.png";
-import { UserContext } from "../../user-context";
+import { Context } from "../../user-context";
 export const Navigation: React.FC = () => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(Context);
   return (
     <div className="navigation-container">
       <div className="nav-logo-container">

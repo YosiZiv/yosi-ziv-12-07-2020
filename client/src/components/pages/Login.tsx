@@ -9,15 +9,14 @@ import { Title } from "../layouts/Title";
 import { Input } from "../layouts/Input";
 import useRequest from "../../hooks/use-request";
 import "./login.scss";
-import { UserContext } from "../../user-context";
 import { User } from "../../types";
-
+import { Context } from "../../user-context";
 const validationSchema = yup.object({
   email: yup.string().email().required(),
   password: yup.string().min(6).max(256),
 });
 export const Login: React.FC<RouteComponentProps> = ({ history }) => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, setUser } = useContext(Context);
   const { doRequest, requestErrors } = useRequest();
   return (
     <div className="login-page-container">
@@ -35,7 +34,10 @@ export const Login: React.FC<RouteComponentProps> = ({ history }) => {
                 body: data,
                 url: "/users/login",
                 method: "post",
-                onSuccess: (user: User) => history.push("/", { user }),
+                onSuccess: (user: User) => {
+                  setUser({ currentUser: user });
+                  history.push("/");
+                },
               });
               setSubmitting(false);
             }}
